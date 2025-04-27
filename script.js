@@ -27,7 +27,7 @@ function renderItem({ src, caption }) {
 // Initial render
 artifacts.forEach(renderItem);
 
-// Handle new uploads
+// Handle new uploads with client-side resize/compression
 uploadForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const fileInput = document.getElementById('imageInput');
@@ -38,14 +38,26 @@ uploadForm.addEventListener('submit', (e) => {
   if (file && caption) {
     const reader = new FileReader();
     reader.onload = (event) => {
-      const src = event.target.result;
-      const entry = { src, caption };
+      const img = new Image();
+      img.onload = () => {
+        const maxWidth = 300;
+        const scale = maxWidth / img.width;
+        const canvas = document.createElement('canvas');
+        canvas.width = maxWidth;
+        canvas.height = img.height * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        // Compress to JPEG at 70% quality
+        const compressedSrc = canvas.toDataURL('image/jpeg', 0.7);
+        const entry = { src: compressedSrc, caption };
 
-      // Save & render
-      artifacts.push(entry);
-      localStorage.setItem('artifacts', JSON.stringify(artifacts));
-      renderItem(entry);
-      uploadForm.reset();
+        // Save & render
+        artifacts.push(entry);
+        localStorage.setItem('artifacts', JSON.stringify(artifacts));
+        renderItem(entry);
+        uploadForm.reset();
+      };
+      img.src = event.target.result;
     };
     reader.readAsDataURL(file);
   }
