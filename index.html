@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anonymous Artifact Archive</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Anonymous Artifact Archive</h1>
+  <p>Anonymously share a single personal object and its story. Browse a collective archive of everyday artifacts.</p>
+
+  <form id="uploadForm">
+    <input type="file" id="imageInput" accept="image/*" required>
+    <textarea id="captionInput" placeholder="Describe this artifact in one sentence..." required></textarea>
+    <button type="submit">Share Artifact</button>
+  </form>
+
+  <div class="gallery" id="gallery"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  text-align: center;
+  padding: 20px;
+}
+h1 {
+  margin-bottom: 10px;
+}
+form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+input, textarea, button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.gallery {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.item {
+  background: #fff;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  width: 200px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  opacity: 1;
+  transition: opacity 5s ease-in-out;
+}
+.fading {
+  opacity: 0.3 !important;
+}
